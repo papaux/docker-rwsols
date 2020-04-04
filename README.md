@@ -21,7 +21,7 @@ Open the `docker-compose.yml` file and set the environment variables to match yo
 * `WOL_COMPUTER_MACS`
 * `WOL_COMPUTER_LOCAL_IPS`
 
-All values should set as a comma separated list. The ordering must match for each three variables.
+All values should be set as a comma separated list. The ordering must match for each three variables.
 
 #### Password
 
@@ -39,7 +39,7 @@ Once you enter your password, you get a hash:
 Your password hash: 3fc9b689459d738f8c88a3a48aa9e33542016b7a4052e001aaa536fca74813cb
 ```
 
-Copy this hash in the compose file, for the variable `WOL_PASSWORD_HASH`.
+Copy this hash to the compose file, for the variable `WOL_PASSWORD_HASH`.
 
 #### Other parameters
 
@@ -47,7 +47,7 @@ You can change additional variables like the ports and ping times. Have a look a
 
 ### HTTPS Setup
 
-The server supports HTTPS. In order to enable it, you need to create the certificates and copy them to a `ssl` folder that will be mounted to the image.
+The server optionally supports HTTPS. In order to enable it, you need to create the certificates and copy them to a `ssl` folder that will be mounted to the image.
 
 Use the helper script to create the certificates:
 
@@ -63,3 +63,15 @@ wol.crt  wol.csr  wol.key
 ```
 
 You can also use your own signed certificates by copying them in the folder, using the same naming.
+
+## Run the container
+
+Now that everything is properly configured, we can run the container!
+
+```
+docker-compose up
+```
+
+The first time you run this command, that will automatically build the docker image. If you want to force rebuilding it, you need to add the `--build` parameter: `docker-compose up --build`
+
+You should now be able to access the web interface: https://localhost:2000/
