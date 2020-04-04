@@ -1,0 +1,16 @@
+version: '3'
+services:
+  rwsols:
+    #build: .
+    image: rwsols
+    ports:
+      - "2000:443"
+    environment:
+      WOL_PASSWORD: super
+      WOL_MAX_PING: 3
+      WOL_SLEEP_TIME: 4
+      WOL_COMPUTER_NAMES: ordi1,ordi2
+      WOL_COMPUTER_MACS: 00:00:00:11:11:11,00:00:00:22:22:22
+      WOL_COMPUTER_LOCAL_IPS: 192.168.1.1,192.168.1.2
+    volumes:
+      - ./ssl/:/etc/apache2/ssl

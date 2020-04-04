@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PATH_APACHE_SSL=/etc/apache2/ssl
+CONFIG_FILE=/var/www/html/config.php
+
+if [ -d "$PATH_APACHE_SSL" ] && [ -f "$PATH_APACHE_SSL/wol.crt" ] ; then
+  a2enmod ssl
+  sed -i 's/USE_HTTPS = false;/USE_HTTPS = true;/' $CONFIG_FILE
+fi
+
+HASH=$(echo -n "$WOL_PASSWORD" | sha256sum | head -c 64)
+sed -i "s/APPROVED_HASH = .*/APPROVED_HASH = \"$HASH\";/" $CONFIG_FILE
+
+# add double quotes in comma separated list
+WOL_COMPUTER_NAMES=$(sed 's/[^,]*/"&"/g' <<< $WOL_COMPUTER_NAMES)
+WOL_COMPUTER_MACS=$(sed 's/[^,]*/"&"/g' <<< $WOL_COMPUTER_MACS)
+WOL_COMPUTER_LOCAL_IPS=$(sed 's/[^,]*/"&"/g' <<< $WOL_COMPUTER_LOCAL_IPS)
+
+sed -i "s/MAX_PINGS = .*/MAX_PINGS = $WOL_MAX_PING;/" $CONFIG_FILE
+sed -i "s/SLEEP_TIME = .*/SLEEP_TIME = $WOL_SLEEP_TIME;/" $CONFIG_FILE
+sed -i "s/COMPUTER_NAME = .*/COMPUTER_NAME = array($WOL_COMPUTER_NAMES);/" $CONFIG_FILE
+sed -i "s/COMPUTER_MAC = .*/COMPUTER_MAC = array($WOL_COMPUTER_MACS);/" $CONFIG_FILE
+sed -i "s/COMPUTER_LOCAL_IP = .*/COMPUTER_LOCAL_IP = array($WOL_COMPUTER_LOCAL_IPS);/" $CONFIG_FILE
+
+source /etc/apache2/envvars
+exec apache2 -D FOREGROUND
