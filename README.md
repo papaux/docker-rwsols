@@ -8,10 +8,10 @@ This repository uses the original code and makes it run in a docker container, p
 
 ## Getting started
 
-The project provides a `docker-compose.yml` for easy startup.
-While you can use it right away, your RWSOLS won't be helpful until you configure your network hosts to wake up.
-
 ### Configure
+
+The project comes with a pre-configured `docker-compose.yml` for easy startup. This will also take care of building the image.
+While you can use it right away, your RWSOLS won't be helpful until you configure your network hosts to wake up.
 
 #### Your network hosts
 
