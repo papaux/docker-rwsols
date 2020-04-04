@@ -75,3 +75,4 @@ docker-compose up
 The first time you run this command, that will automatically build the docker image. If you want to force rebuilding it, you need to add the `--build` parameter: `docker-compose up --build`
 
 You should now be able to access the web interface: https://localhost:2000/
+

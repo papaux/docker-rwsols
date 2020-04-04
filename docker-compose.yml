@@ -3,6 +3,7 @@ services:
   rwsols:
     build: .
     image: rwsols
+    restart: unless-stopped
     ports:
       - "2000:443"
     environment:
