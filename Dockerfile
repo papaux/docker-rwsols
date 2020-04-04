@@ -41,7 +41,8 @@ RUN mv $EXTRACTED_DIR/* /var/www/html &&\
 
 COPY ./docker-entrypoint.sh /
 
-ENV WOL_PASSWORD default
+# password is "default"
+ENV WOL_PASSWORD_HASH 37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f
 ENV WOL_MAX_PING 10
 ENV WOL_SLEEP_TIME 10
 ENV WOL_COMPUTER_NAMES ordi1,ordi2

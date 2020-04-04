@@ -8,8 +8,7 @@ if [ -d "$PATH_APACHE_SSL" ] && [ -f "$PATH_APACHE_SSL/wol.crt" ] ; then
   sed -i 's/USE_HTTPS = false;/USE_HTTPS = true;/' $CONFIG_FILE
 fi
 
-HASH=$(echo -n "$WOL_PASSWORD" | sha256sum | head -c 64)
-sed -i "s/APPROVED_HASH = .*/APPROVED_HASH = \"$HASH\";/" $CONFIG_FILE
+sed -i "s/APPROVED_HASH = .*/APPROVED_HASH = \"$WOL_PASSWORD_HASH\";/" $CONFIG_FILE
 
 # add double quotes in comma separated list
 WOL_COMPUTER_NAMES=$(sed 's/[^,]*/"&"/g' <<< $WOL_COMPUTER_NAMES)

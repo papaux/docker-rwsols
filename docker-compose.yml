@@ -6,7 +6,7 @@ services:
     ports:
       - "2000:443"
     environment:
-      WOL_PASSWORD: super
+      WOL_PASSWORD_HASH: 37a8eec1ce19687d132fe29051dca629d164e2c4958ba141d5f4133a33f0688f
       WOL_MAX_PING: 3
       WOL_SLEEP_TIME: 4
       WOL_COMPUTER_NAMES: ordi1,ordi2
