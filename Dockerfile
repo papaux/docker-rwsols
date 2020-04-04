@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:10-slim
 
 MAINTAINER geoffrey.papaux@gmail.com
 
@@ -9,7 +9,7 @@ ARG EXTRACTED_DIR=rwsols
 
 # base install
 RUN apt-get update &&\
-    apt-get install -y wakeonlan apache2 php php7.3-curl libapache2-mod-php wget unzip &&\
+    apt-get install -y iputils-ping wakeonlan apache2 php php7.3-curl libapache2-mod-php wget unzip &&\
     chmod u+s `which ping` &&\
     apt-get clean
 
