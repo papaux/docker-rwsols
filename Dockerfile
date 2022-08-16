@@ -47,8 +47,8 @@ ENV WOL_SLEEP_TIME 10
 ENV WOL_COMPUTER_NAMES ordi1,ordi2
 ENV WOL_COMPUTER_MACS 10:00:00:00:00:00,20:00:00:00:00:00
 ENV WOL_COMPUTER_LOCAL_IPS 192.168.1.1,192.168.1.2
-ENV HTTPS_PORT 2000
-ENV HTTP_PORT 2001
+ENV WOL_HTTPS_PORT 2000
+ENV WOL_HTTP_PORT 2001
 
 # Since we are uing network in host mode, this has no effect.
 # Find a way to run in bridge mode and this can then be restored.
